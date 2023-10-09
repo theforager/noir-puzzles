@@ -6,9 +6,12 @@
 // See here: https://noir-lang.org/standard_library/cryptographic_primitives/hashes/#mimc_bn254-and-mimc
 // Note: An example of importing the standard library can be seen from the link below.
 //       https://noir-lang.org/standard_library/logging
+use dep::std;
 
 fn main(a : Field, salt : Field) -> pub Field {
-  // your code here
+  let inputs = [a, salt];
+  let hash = std::hash::mimc_bn254(inputs);
+  hash
 }
 
 ////////////////////
