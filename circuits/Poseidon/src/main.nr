@@ -8,9 +8,10 @@
 // Note: We are able to import the entire standard library as before, or specific functions.
 //       For example, below is the import syntax for a specific elliptic curve method.
 //       use dep::std::ec::tecurve::affine::Curve;
+use dep::std::hash::poseidon;
 
 fn main(x : Field) -> pub Field {
-  // your code here
+  poseidon::bn254::hash_1([x])
 }
 
 ////////////////////
