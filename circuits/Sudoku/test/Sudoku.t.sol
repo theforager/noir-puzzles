@@ -2,7 +2,8 @@
 pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
-import "../circuits/contract/plonk_vk.sol";
+import "../circuits/contract/Sudoku/plonk_vk.sol";
+
 contract Noir is Test {
     UltraVerifier public ultraverifier;
     bytes32[] public correct_input = new bytes32[](16);
@@ -46,14 +47,14 @@ contract Noir is Test {
     }
 
     function test_correct_solution() public {
-        string memory proof = vm.readLine("./circuits/proofs/p.proof");
+        string memory proof = vm.readLine("./circuits/proofs/Sudoku.proof");
         bytes memory proof_in_bytes = vm.parseBytes(proof);
         ultraverifier.verify(proof_in_bytes,correct_input);
     }
 
     function test_wrong_solution() public {
         vm.expectRevert();
-        string memory proof = vm.readLine("./circuits/proofs/p.proof");
+        string memory proof = vm.readLine("./circuits/proofs/Sudoku.proof");
         bytes memory proof_in_bytes = vm.parseBytes(proof);
         ultraverifier.verify(proof_in_bytes,wrong_input);
     }
